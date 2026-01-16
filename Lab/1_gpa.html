@@ -96,7 +96,48 @@ function calculate() {
     - document.getElementById("kor1").value
     - Number() 또는 parseInt() 사용
     */
+   let kor1 = Number(document.getElementById("kor1").value)
+   let eng1 = Number(document.getElementById("eng1").value)
+   let math1 = Number(document.getElementById("math1").value)
+   let total1 = kor1 + eng1 + math1
+   let avg1 = total1 / 3
+   document.getElementById("total1").value = total1
+   document.getElementById("avg1").value = avg1.toFixed(2)
 
+   let kor2 = Number(document.getElementById("kor2").value)
+   let eng2 = Number(document.getElementById("eng2").value)
+   let math2 = Number(document.getElementById("math2").value)
+   let total2 = kor2 + eng2 + math2
+   let avg2 = total2 / 3
+   document.getElementById("total2").value = total2
+   document.getElementById("avg2").value = avg2.toFixed(2)
+
+   let kor3 = Number(document.getElementById("kor3").value)
+   let eng3 = Number(document.getElementById("eng3").value)
+   let math3 = Number(document.getElementById("math3").value)
+   let total3 = kor3 + eng3 + math3
+   let avg3 = total3 / 3
+   document.getElementById("total3").value = total3
+   document.getElementById("avg3").value = avg3.toFixed(2)
+
+   let kor4 = Number(document.getElementById("kor4").value)
+   let eng4 = Number(document.getElementById("eng4").value)
+   let math4 = Number(document.getElementById("math4").value)
+   let total4 = kor4 + eng4 + math4
+   let avg4 = total4 / 3
+   document.getElementById("total4").value = total4
+   document.getElementById("avg4").value = avg4.toFixed(2)
+
+   let kor5 = Number(document.getElementById("kor5").value)
+   let eng5 = Number(document.getElementById("eng5").value)
+   let math5 = Number(document.getElementById("math5").value)
+   let total5= kor5 + eng5 + math5
+   let avg5 = total5/ 3
+   document.getElementById("total5").value = total5
+   document.getElementById("avg5").value = avg5.toFixed(2)
+
+   let classAvg = (avg1 + avg2 + avg3 + avg4 + avg5) / 5
+   document.getElementById("classAvg").value = classAvg.toFixed(2)
 }
 </script>
 
