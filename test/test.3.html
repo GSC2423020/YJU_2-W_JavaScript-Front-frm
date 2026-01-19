@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="input_value" placeholder="Put numbers">
+    <button id="add_btn" onclick="add_num()">Add</button>
+    <script>
+        // <Event handler>
+        
+        // Outer function
+        function createdAdder() {
+            let total = 0;
+            
+            // Inner function
+            function add() {
+                const input = document.getElementById("input_value").value;
+                total += Number(input)
+                alert(total);
+            }
+            return add;
+        }
+        const add_num = createdAdder();
+    </script>
+</body>
+</html>
