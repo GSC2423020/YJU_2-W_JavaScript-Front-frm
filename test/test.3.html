@@ -16,12 +16,12 @@
             let total = 0;
             
             // Inner function
-            function add() {
+            return () => { // Arrow Function
                 const input = document.getElementById("input_value").value;
                 total += Number(input)
                 alert(total);
             }
-            return add;
+            // return add;
         }
         const add_num = createdAdder();
     </script>
