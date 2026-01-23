@@ -20,86 +20,91 @@
   <ul id="list"></ul>
 
   <script>
-    const txt = document.getElementById("txt");
-    const btnAdd = document.getElementById("btnAdd");
-    const list = document.getElementById("list");
+    const txt = document.getElementById("txt");           // 입력창 DOM 요소 가져오기
+    const btnAdd = document.getElementById("btnAdd");     // [추가] 버튼 DOM 요소
+    const list = document.getElementById("list");         // <ul> 목록 DOM 요소
 
     function createItem(text) {
-      const li = document.createElement("li");
+      const li = document.createElement("li");            // <li> 새 항목 생성
 
-      const span = document.createElement("span");
-      span.textContent = text;
+      const span = document.createElement("span");        // 표시용 텍스트 영역 생성
+      span.textContent = text;                            // span의 글자를 설정
 
-      const input = document.createElement("input");
+      const input = document.createElement("input");      // 수정용 input 생성
       input.type = "text";
       input.value = text;
-      input.style.display = "none";
+      input.style.display = "none";                       // 처음에는 숨김 (보기 모드)
 
-      const btnEdit = document.createElement("button");
+      const btnEdit = document.createElement("button");   // 수정 버튼
       btnEdit.textContent = "수정";
 
-      const btnSave = document.createElement("button");
+      const btnSave = document.createElement("button");   // 저장 버튼
       btnSave.textContent = "저장";
-      btnSave.style.display = "none";
+      btnSave.style.display = "none";                     // 수정 모드에서만 보이게
 
-      const btnCancel = document.createElement("button");
+      const btnCancel = document.createElement("button"); // 취소 버튼
       btnCancel.textContent = "취소";
-      btnCancel.style.display = "none";
+      btnCancel.style.display = "none";                   // 수정 모드에서만 보이게
 
-      const btnDel = document.createElement("button");
+      const btnDel = document.createElement("button");    // 삭제 버튼
       btnDel.textContent = "삭제";
 
-      let prevText = text;
+      let prevText = text;                                // 취소 시 되돌릴 이전 텍스트 저장용
 
       function enterEditMode() {
-        prevText = span.textContent;
-        input.value = prevText;
-
+        prevText = span.textContent;                      // 현재 텍스트를 저장
+        input.value = prevText;                           // input에 현재 값 넣기
+        
+        // 보기(span) 숨기고, 수정(input) 보이기
         span.style.display = "none";
         input.style.display = "";
 
+        // 수정 버튼 숨기고, 저장/취소 보이기
         btnEdit.style.display = "none";
         btnSave.style.display = "";
         btnCancel.style.display = "";
 
-        btnDel.disabled = true;
+        btnDel.disabled = true;                           // 수정 중 삭제 금지(버튼 비활성)
 
-        input.focus();
-        input.select();
+        input.focus();                                    // 커서 이동
+        input.select();                                   // 글자 선택(바로 수정 가능)
       }
 
       function exitEditMode() {
+        // 보기(span) 보이고, 수정(input) 숨기기
         span.style.display = "";
         input.style.display = "none";
 
+        // 수정 버튼 보이고, 저장/취소 숨기기
         btnEdit.style.display = "";
         btnSave.style.display = "none";
         btnCancel.style.display = "none";
 
-        btnDel.disabled = false;
+        btnDel.disabled = false;                          // 삭제 버튼 다시 활성화
       }
 
-      btnEdit.addEventListener("click", enterEditMode);
+      btnEdit.addEventListener("click", enterEditMode);   // 수정 버튼 클릭 -> 수정 모드로
 
-      btnSave.addEventListener("click", () => {
-        const value = input.value.trim();
-        if (!value) return;
-        span.textContent = value;
-        exitEditMode();
+      btnSave.addEventListener("click", () => {           // 저장 버튼 클릭
+        const value = input.value.trim();                 // 공백 제거
+        if (!value) return;                               // 빈 값이면 저장 안 함
+        span.textContent = value;                         // 보기 텍스트 변경
+        exitEditMode();                                   // 보기 모드 복귀
       });
 
-      btnCancel.addEventListener("click", () => {
-        span.textContent = prevText;
-        exitEditMode();
+      btnCancel.addEventListener("click", () => {         // 취소 버튼 클릭
+        span.textContent = prevText;                      // 이전 텍스트를 되돌림
+        exitEditMode();                                   // 보기 모드 복귀
       });
 
-      btnDel.addEventListener("click", () => li.remove());
+      btnDel.addEventListener("click", () => li.remove()); // 삭제 버튼 클리 -> li 자체 삭제
 
-      input.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") btnSave.click();
-        if (e.key === "Escape") btnCancel.click();
+      input.addEventListener("keydown", (e) => {           // 수정 input에서 키 입력 처리
+        if (e.key === "Enter") btnSave.click();            // Enter면 저장 버튼 "클릭"
+        if (e.key === "Escape") btnCancel.click();         // Esc면 취소 버튼 "클릭"
       });
 
+      // li에 요소들을 순서대로 붙여서 화면에 보이도록 구성
       li.appendChild(span);
       li.appendChild(input);
       li.appendChild(document.createTextNode(" "));
@@ -108,7 +113,7 @@
       li.appendChild(btnCancel);
       li.appendChild(btnDel);
 
-      return li;
+      return li;                                           // 완성된 li를 반환
     }
 
     btnAdd.addEventListener("click", () => {
