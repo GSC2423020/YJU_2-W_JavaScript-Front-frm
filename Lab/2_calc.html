@@ -52,6 +52,16 @@
     // =========================
     // TODO 1) 필요한 DOM 요소 가져오기
     // =========================
+    var a = document.getElementById("a");
+    var b = document.getElementById("b");
+
+    var outAdd = document.getElementById("outAdd");
+    var outSub = document.getElementById("outSub");
+    var outMul = document.getElementById("outMul");
+    var outDiv = document.getElementById("outDiv");
+
+    var btnCalc = document.getElementById("btnCalc");
+    var btnReset = document.getElementById("btnReset");
 
     // =========================
     // TODO 2) 계산 버튼 이벤트 처리
@@ -61,6 +71,26 @@
     // =========================
     function handleCalculate() {
       // TODO
+      var numA = Number(a.value);
+      var numB = Number(b.value);
+
+      if (isNaN(numA) || isNaN(numB)) {
+        outAdd.value = "ERROR";
+        outSub.value = "ERROR";
+        outMul.value = "ERROR";
+        outDiv.value = "ERROR";
+        return;
+      }
+
+      outAdd.value = numA + numB;
+      outSub.value = numA - numB;
+      outMul.value = numA * numB;
+
+      if (numB === 0) {
+        outDiv.value = "DIV/0";
+      } else {
+        outDiv.value = numA / numB;
+      }
     }
 
     // =========================
@@ -69,11 +99,20 @@
     // =========================
     function handleReset() {
       // TODO
+      a.value = "";
+      b.value = "";
+
+      outAdd.value = "";
+      outSub.value = "";
+      outMul.value = "";
+      outDiv.value = "";
     }
 
     // =========================
     // TODO 4) 버튼에 이벤트 연결
     // =========================
+    btnCalc.onclick = handleCalculate;
+    btnReset.onclick = handleReset;
   </script>
 </body>
 </html>
